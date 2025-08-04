@@ -27,12 +27,14 @@ curl localhost:8080/students/10
  ```{"timestamp":"2025-08-03T17:08:39.0768668","message":"Student not found"}```
 
 Post
-curl localhost:8080/students --json "{\"firstName\":\"Sidney\", \"lastName\":\"Royal\", \"email\":\"sidney@comp.com\"}"
+curl localhost:8080/students --json "{\"firstName\":\"Sidney\", \"lastName\":\"Royal\", \"email\":\"sid@comp.com\"}"
  ```Created student with id 5```
 
 Put
-curl localhost:8080/students/4   -X PUT --json "{\"firstName\":\"Sidney\", \"lastName\":\"Roy\", \"email\":\"sidney@comp.com\"}"
- ```Student{id=4, firstName='Sidney', lastName='Royal', email='sidney@comp.com'} now changed to Student{id=4, firstName='Sidney', lastName='Roy', email='sidney@comp.com'}```
+curl localhost:8080/students/4   -X PUT --json "{\"firstName\":\"Sidney\", \"lastName\":\"Roy\", \"email\":\"sid@comp.com\"}"
+```
+Student{id=4, firstName='Sidney', lastName='Royal', email='sid@comp.com'} updated with Student{id=4, firstName='Sidney', lastName='Roy', email='sid@comp.com'}
+```
 
 Delete
 curl localhost:8080/students/1 -X DELETE
