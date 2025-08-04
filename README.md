@@ -90,7 +90,7 @@ curl localhost:8080/students -X DELETE
     - ResponseEntity allows us to customize the HTTP Responses like error message, staus code and so on. It gives us complete control over what is sent back to the client. 
     - A simple class object return suffices to default HTTP behavior, limited to default error handling, no customizable
   
- - How to reset shared state between tests - error running all tests together fails when tests run individually
+ - How to reset shared state between tests - error tests pass individually but not when run together
     - Add the @DirtiesContext annotation, but provide it with the AFTER_EACH_TEST_METHOD classMode
     - @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 
