@@ -57,6 +57,10 @@ curl localhost:8080/students -X DELETE
 
 
 
+<br>
+<br>
+<br>
+
 #### Lessons learned
 
 TypedQuery are designed for SELECT queries which return results whereas UPDATE queries do not return results. Instead of using a TypedQuery, we can use a standard Query and execute it with executeUpdate().
