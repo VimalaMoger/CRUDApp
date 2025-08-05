@@ -13,8 +13,8 @@ application starts.
 * [x] Creation of Entity named Student, DAO, service and controller classes
 * [x] Accessing data with MySQL 
 * [x] Accessing Data with JPA - EntityManager to interact with the persistence context(crud actions)
-* [x] Tests using @DataJpaTest
-* [x] HTTP calls
+* [x] Testing JPA and service layer
+* [x] REST API calls over HTTP
 * [x] Exception handlers
 
 ### Used curl to send HTTP requests
