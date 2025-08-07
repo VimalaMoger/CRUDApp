@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(
+    public ResponseEntity<Object> handleStudentNotFoundException(
             StudentNotFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();

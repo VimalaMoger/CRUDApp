@@ -14,7 +14,7 @@ application starts.
 * [x] Accessing data with MySQL 
 * [x] Accessing Data with JPA - EntityManager to interact with the persistence context(crud actions)
 * [x] Tests using @DataJpaTest
-* [x] HTTP calls
+* [x] Making REST API calls over HTTP
 * [x] Exception handlers
 
 ### Used curl to send HTTP requests
