@@ -1,5 +1,6 @@
-package com.moger.crudproject.DAO;
+package com.moger.crudproject.serviceImpl;
 
+import com.moger.crudproject.dao.StudentDAO;
 import com.moger.crudproject.entity.Student;
 import com.moger.crudproject.exception.DataNotFoundException;
 import com.moger.crudproject.exception.StudentNotFoundException;
@@ -23,7 +24,8 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     @Transactional
-    public Long save(Student theStudent){
+    public Long save(Student theStudent) {
+
         entityManager.persist(theStudent);
         entityManager.flush();  //to retrieve id
         return theStudent.getId();
@@ -31,23 +33,26 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public Student findStudentById(Long id) {
+
         Student student = entityManager.find(Student.class, id);
         if(student == null) {
-            throw new StudentNotFoundException(id);
+            throw new StudentNotFoundException(String.format("Student with %d not found", id));
         }
         return student;
     }
 
     @Override
     public Student findStudentByLastName(String lastName) {
+
         TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student WHERE lastName=:theLastName", Student.class);
 
         //set query parameter
         theQuery.setParameter("theLastName", lastName);
+
         //return query results
         Student student = theQuery.getSingleResult();
         if(student == null)
-            throw new DataNotFoundException();
+           throw new StudentNotFoundException("Student not found");
         return student;
     }
 
@@ -60,25 +65,25 @@ public class StudentDAOImpl implements StudentDAO {
 
         //return query results
         if(theQuery.getResultList().isEmpty())
-            throw new DataNotFoundException();
+            throw new DataNotFoundException("Data is not added yet");
         return theQuery.getResultList();
     }
 
     @Override
     @Transactional
-    public Student updateStudent(Long id, Student theStudent) {
+    public void updateStudent(Long id, Student theStudent) {
+
         //Ensure the ID in the path matches the entity's ID
         Student student = entityManager.find(Student.class, id);
         if(student == null)
-            throw new DataNotFoundException();
+            throw new DataNotFoundException(String.format("Student with %d not found",id));
 
         Query theQuery = entityManager.createQuery("Update Student s set s.firstName =:fn, s.lastName=:ln, s.email=:email WHERE s.id=:id");
         theQuery.setParameter("fn", theStudent.getFirstName());
         theQuery.setParameter("ln", theStudent.getLastName());
         theQuery.setParameter("email", theStudent.getEmail());
-        theQuery.setParameter("id",id);
+        theQuery.setParameter("id", id);
         theQuery.executeUpdate();
-        return student;
     }
 
     @Override
@@ -90,7 +95,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         //delete the student
         if(theStudent == null)
-            throw new StudentNotFoundException(theId);
+            throw new StudentNotFoundException(String.format("Student with %d does not exist", theId));
         entityManager.remove(theStudent);
     }
 
@@ -98,6 +103,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Transactional
     public int deleteAllStudents() {
 
+        getAllStudents();
         return entityManager.createQuery("DELETE FROM Student").executeUpdate();
     }
 }

@@ -1,7 +1,12 @@
 package com.moger.crudproject.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
 @Entity
 public class Student {
 
@@ -18,10 +23,6 @@ public class Student {
 
     @Column(name = "email")
     private String email;
-
-
-    //define constructors
-    public Student(){}
 
     public Student(String firstName, String lastName, String email){
         this.firstName = firstName;
@@ -59,7 +60,7 @@ public class Student {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
