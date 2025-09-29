@@ -29,35 +29,40 @@ application starts.
 
 Get
 
-curl -u lily:test localhost:8080/students/2
 ```
+curl -u lily:test localhost:8080/students/2
+
 {"id":2,"firstName":"Lily","lastName":"Public","age":12,"email":"lily@comp.com","major":"stu_Chemistry"}
 ```
 Get request: error response
 
-curl -u lily:test localhost:8080/students/10
 ```
+curl -u lily:test localhost:8080/students/10
+
 {"status":404,"message":"Student with id 10 does not exist!","time":1759173171360}
 ```
 
 Post
 
-curl -u lily:test localhost:8080/students --json "{\"firstName\":\"Sidney\", \"lastName\":\"Royal\", \"age\":\"12\", \"email\":\"sid@comp.com\", \"major\":\"stu_Physics\"}"
 ```
+curl -u lily:test localhost:8080/students --json "{\"firstName\":\"Sidney\", \"lastName\":\"Royal\", \"age\":\"12\", \"email\":\"sid@comp.com\", \"major\":\"stu_Physics\"}"
+
 Created student with id 4
 ```
 
 Put
 
-curl -u lily:test localhost:8080/students/4   -X PUT --json "{\"firstName\":\"Sidney\", \"lastName\":\"Roy\", \"age\":\"19\", \"email\":\"sid@comp.com\", \"major\":\"stu_Social science\"}"
 ```
+curl -u lily:test localhost:8080/students/4   -X PUT --json "{\"firstName\":\"Sidney\", \"lastName\":\"Roy\", \"age\":\"19\", \"email\":\"sid@comp.com\", \"major\":\"stu_Social science\"}"
+
 Student{id=4, firstName='Sidney', lastName='Royal', age=12, email='sid@comp.com', major='stu_Physics'} now changed to Student{id=4, firstName='Sidney', lastName='Roy', age=19, email='sid@comp.com', major='stu_Social science'}
 ```
 
 Delete
 
+```
 curl -u pansy:test localhost:8080/students/1 -X DELETE
- ```
+ 
  Student with id 1 deleted
  ```
 
@@ -84,7 +89,7 @@ curl -u pansy:test localhost:8080/students -X DELETE
 
 #### Lessons learned
 
-> In Windows cmd, double quotes are used to wrap json data, backslash(\) is used to escape double quotes in the post and put cURL request(if key or value contains special characters (like quotes or spaces))
+> In Windows cmd, double quotes are used to wrap json data, backslash(\\) is used to escape double quotes in  **cURL** request(if key or value contains special characters (like quotes or spaces))
 
 > Difference between 401 and 403
 ```
