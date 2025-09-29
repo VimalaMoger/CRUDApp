@@ -43,8 +43,8 @@ class StudentDAOImplTest {
     @Order(2)
     void save() {
 
-        entityManager.persist(new Student("Sunny", "Flask", "sunny@comp.com"));
-        entityManager.persist(new Student("Josh", "Molly", "josh@comp.com"));
+        entityManager.persist(new Student("Sunny", "Flask",12, "sunny@comp.com", "stu_Chemistry"));
+        entityManager.persist(new Student("Josh", "Molly",12, "josh@comp.com", "stu_Chemistry"));
         List<Student> students = studentDao.getAllStudents();
 
         assertEquals(2, students.size());
@@ -94,7 +94,7 @@ class StudentDAOImplTest {
     @Sql(scripts={"classpath:createStudent.sql"})
     void updateStudent() {
 
-        Student student = new Student("Joshua", "Mosh", "joshua@comp.com");
+        Student student = new Student("Joshua", "Mosh", 12, "joshua@comp.com", "stu_Chemistry");
         Student student1 = entityManager.merge(student);
 
         assertEquals(student.getFirstName(), student1.getFirstName());

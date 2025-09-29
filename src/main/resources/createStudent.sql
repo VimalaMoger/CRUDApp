@@ -1,3 +1,3 @@
-INSERT INTO Student(first_name, last_name, email) VALUES('Sunny', 'Flask', 'sunny@comp.com');
+INSERT INTO Student(first_name, last_name, age, email, major) VALUES('Sunny', 'Flask',12, 'sunny@comp.com', 'stu_Chemistry');
 
-INSERT INTO Student(first_name, last_name, email) values('Josh', 'Molly', 'josh@comp.com');
+INSERT INTO Student(first_name, last_name, age, email, major) values('Josh', 'Molly',12, 'josh@comp.com', 'stu_Chemistry');

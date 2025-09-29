@@ -20,32 +20,51 @@ application starts.
 * [x] Externalized the jdbc configuration using environment variables in Properties file
 * [x] Used @Value annotation to inject environment variable(user password) into SecurityConfig class 
 * [x] RESTAPI Security-restrict endpoints based on user roles
+* [x] Spring MVC Validation - Required fields, @InitBinder, Number range, Regex, Custom messages, Custom
+        Java Annotation class, Custom Validation rule
 
-### Used curl to send HTTP requests
+### Used cURL to send HTTP requests
+
+*Included security credentials in cURL request* examples
 
 Get
-curl localhost:8080/students/1
- ```{"id":1,"firstName":"Pansy","lastName":"Bran","email":"paul@comp.com"}```
 
-curl localhost:8080/students/10
- ```{"timestamp":"2025-08-03T17:08:39.0768668","message":"Student not found"}```
+curl -u lily:test localhost:8080/students/2
+```
+{"id":2,"firstName":"Lily","lastName":"Public","age":12,"email":"lily@comp.com","major":"stu_Chemistry"}
+```
+Get request: error response
+
+curl -u lily:test localhost:8080/students/10
+```
+{"status":404,"message":"Student with id 10 does not exist!","time":1759173171360}
+```
 
 Post
-curl localhost:8080/students --json "{\"firstName\":\"Sidney\", \"lastName\":\"Royal\", \"email\":\"sid@comp.com\"}"
- ```Created student with id 5```
+
+curl -u lily:test localhost:8080/students --json "{\"firstName\":\"Sidney\", \"lastName\":\"Royal\", \"age\":\"12\", \"email\":\"sid@comp.com\", \"major\":\"stu_Physics\"}"
+```
+Created student with id 4
+```
 
 Put
-curl localhost:8080/students/4   -X PUT --json "{\"firstName\":\"Sidney\", \"lastName\":\"Roy\", \"email\":\"sid@comp.com\"}"
+
+curl -u lily:test localhost:8080/students/4   -X PUT --json "{\"firstName\":\"Sidney\", \"lastName\":\"Roy\", \"age\":\"19\", \"email\":\"sid@comp.com\", \"major\":\"stu_Social science\"}"
 ```
-Student{id=4, firstName='Sidney', lastName='Royal', email='sid@comp.com'} updated with Student{id=4, firstName='Sidney', lastName='Roy', email='sid@comp.com'}
+Student{id=4, firstName='Sidney', lastName='Royal', age=12, email='sid@comp.com', major='stu_Physics'} now changed to Student{id=4, firstName='Sidney', lastName='Roy', age=19, email='sid@comp.com', major='stu_Social science'}
 ```
 
 Delete
-curl localhost:8080/students/1 -X DELETE
- ```Student with id 1 deleted```
 
-curl localhost:8080/students -X DELETE
-```3 records deleted```
+curl -u pansy:test localhost:8080/students/1 -X DELETE
+ ```
+ Student with id 1 deleted
+ ```
+
+curl -u pansy:test localhost:8080/students -X DELETE
+```
+3 records removed
+```
 
 ### Tests - service logic is tested in conjunction with the repository layer
 - @DataJpaTest
@@ -56,9 +75,7 @@ curl localhost:8080/students -X DELETE
         Ran SQL script using @Sql 
   
     ```   
-  ![test](assets/testResult.PNG)
-
-
+  ![test](assets/testResult.png)
 
 
 <br>

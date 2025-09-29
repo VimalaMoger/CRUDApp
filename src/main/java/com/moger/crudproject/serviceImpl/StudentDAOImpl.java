@@ -36,7 +36,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         Student student = entityManager.find(Student.class, id);
         if(student == null) {
-            throw new StudentNotFoundException(String.format("Student with %d not found", id));
+            throw new StudentNotFoundException(String.format("Student with id %d not found", id));
         }
         return student;
     }
@@ -71,19 +71,21 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     @Transactional
-    public void updateStudent(Long id, Student theStudent) {
+    public int updateStudent(Long id, Student theStudent) {
 
         //Ensure the ID in the path matches the entity's ID
         Student student = entityManager.find(Student.class, id);
         if(student == null)
-            throw new DataNotFoundException(String.format("Student with %d not found",id));
+            throw new DataNotFoundException(String.format("Student with id %d not found",id));
 
-        Query theQuery = entityManager.createQuery("Update Student s set s.firstName =:fn, s.lastName=:ln, s.email=:email WHERE s.id=:id");
+        Query theQuery = entityManager.createQuery("Update Student s set s.firstName =:fn, s.lastName=:ln, s.age=:age, s.email=:email, s.major=:major WHERE s.id=:id");
         theQuery.setParameter("fn", theStudent.getFirstName());
         theQuery.setParameter("ln", theStudent.getLastName());
+        theQuery.setParameter("age", theStudent.getAge());
         theQuery.setParameter("email", theStudent.getEmail());
+        theQuery.setParameter("major", theStudent.getMajor());
         theQuery.setParameter("id", id);
-        theQuery.executeUpdate();
+        return theQuery.executeUpdate();
     }
 
     @Override
@@ -95,7 +97,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         //delete the student
         if(theStudent == null)
-            throw new StudentNotFoundException(String.format("Student with %d does not exist", theId));
+            throw new StudentNotFoundException(String.format("Student with id %d does not exist", theId));
         entityManager.remove(theStudent);
     }
 

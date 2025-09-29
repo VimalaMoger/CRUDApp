@@ -26,7 +26,7 @@ public class Dataprovider {
     
     // createStudent();
     public void saveStudent(){
-        Student tempStudent = new Student("Pansy", "Bran", "pansy@comp.com");
+        Student tempStudent = new Student("Pansy", "Bran",12,"pansy@comp.com", "stu_Chemistry");
         User tempUser = new User("Pansy", encodedPassword, true);
         Role role = new Role("ROLE_ADMIN");
 
@@ -40,8 +40,8 @@ public class Dataprovider {
 
     // createMultipleStudents();
     public void saveMultipleStudents(){
-        Student tempStudent2 = new Student("Lily", "Public", "lily@comp.com");
-        Student tempStudent3 = new Student("Bonita", "Applebum", "bonita@comp.com");
+        Student tempStudent2 = new Student("Lily", "Public",12, "lily@comp.com", "stu_Chemistry");
+        Student tempStudent3 = new Student("Bonita", "Applebum",12, "bonita@comp.com", "stu_Chemistry");
 
         User tempUser2 = new User("Lily", encodedPassword, true);
         Role role2 = new Role("ROLE_STU");
@@ -84,7 +84,7 @@ public class Dataprovider {
     // updateStudent();
     public void updateStudent(){
         Long studentId = 1L;
-        Student tempStudent1 = new Student("Daisy", "Dona", "daisy@comp.com");
+        Student tempStudent1 = new Student("Daisy", "Dona", 12, "daisy@comp.com", "Chemistry");
         //Student student = studentDAO.findStudentById(studentId);
         studentDAO.updateStudent(studentId, tempStudent1);
     }

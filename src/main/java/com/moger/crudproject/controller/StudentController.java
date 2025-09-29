@@ -32,7 +32,7 @@ public class StudentController {
 
         List<Student> students = studentDAO.getAllStudents().stream().filter(n -> n.getId()==id).toList();
         if (students.isEmpty())
-            throw new StudentNotFoundException(String.format("Student with %d does not exist!", id));
+            throw new StudentNotFoundException(String.format("Student with id %d does not exist!", id));
         return new ResponseEntity<>(studentDAO.findStudentById(id),HttpStatus.OK);
     }
 
@@ -47,10 +47,12 @@ public class StudentController {
 
         List<Student> students = studentDAO.getAllStudents().stream().filter(n -> n.getId()==id).toList();
         if (students.isEmpty())
-            throw new DataNotFoundException(String.format("Student with %d does not exist!", id));
+            throw new DataNotFoundException(String.format("Student with id %d does not exist!", id));
 
         Student beforeUpdateStudent = studentDAO.findStudentById(id);
-        student.setId(id);
+        if (studentDAO.updateStudent(id, student) > 0) {
+            student.setId(id);
+        }
         return new ResponseEntity<>(beforeUpdateStudent + String.format(" now changed to " + student),HttpStatus.OK);
     }
 
@@ -59,10 +61,10 @@ public class StudentController {
 
         List<Student> students = studentDAO.getAllStudents().stream().filter(n -> n.getId() == id).toList();
         if (students.isEmpty())
-            throw new StudentNotFoundException(String.format("Student with %d does not exist!", id));
+            throw new StudentNotFoundException(String.format("Student with id %d does not exist!", id));
         studentDAO.deleteStudent(id);
 
-        String message = String.format("Student with %d deleted", id);
+        String message = String.format("Student with id %d deleted", id);
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 

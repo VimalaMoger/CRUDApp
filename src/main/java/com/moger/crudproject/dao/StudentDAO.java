@@ -14,7 +14,7 @@ public interface StudentDAO {
 
     List<Student> getAllStudents();
 
-    void updateStudent(Long id, Student student);
+    int updateStudent(Long id, Student student);
 
     void deleteStudent(long id);
 
