@@ -83,6 +83,9 @@ curl -u pansy:test localhost:8080/students -X DELETE
 <br>
 
 #### Lessons learned
+
+> In Windows cmd, double quotes are used to wrap json data, backslash(\) is used to escape double quotes in the post and put cURL request(if key or value contains special characters (like quotes or spaces))
+
 > Difference between 401 and 403
 ```
     401 Unauthorized: The client is not authenticated. The server expects the client to provide valid credentials.(client uses authentication header)
