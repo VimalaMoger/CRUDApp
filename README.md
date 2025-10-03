@@ -5,8 +5,8 @@ application starts.
 
 
 ### Dependencies needed to run the project
-    - spring-boot starter-web, data-jpa, mysql-connector, h2 database, starter-test
-    - spring-boot-starter-validation for using @Valid annotation in Controller class
+    - spring-boot (starter-web, data-jpa, starter-test, starter-security, starter-thymeleaf), 
+    - springdoc-openapi-starter-webmvc-ui, lombok, spring-boot-starter-validation, hibernate-validator, mysql-connector, h2 database
 
 #### Tasks
 
