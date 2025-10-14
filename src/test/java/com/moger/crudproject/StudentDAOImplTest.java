@@ -1,4 +1,4 @@
-package com.moger.crudproject.DAO;
+package com.moger.crudproject;
 
 import com.moger.crudproject.dao.StudentDAO;
 import com.moger.crudproject.entity.Student;

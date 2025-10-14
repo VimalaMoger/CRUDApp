@@ -5,6 +5,8 @@ import com.moger.crudproject.entity.Student;
 import com.moger.crudproject.exception.DataNotFoundException;
 import com.moger.crudproject.exception.StudentNotFoundException;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,10 @@ import java.util.List;
 
 @RestController
 public class StudentController {
+
     private final StudentDAO studentDAO;
+
+    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     public StudentController(StudentDAO studentDAO) {
         this.studentDAO = studentDAO;
@@ -46,9 +51,10 @@ public class StudentController {
     public ResponseEntity<Object> updateStudent(@PathVariable Long id, @RequestBody @Valid Student student) {
 
         List<Student> students = studentDAO.getAllStudents().stream().filter(n -> n.getId()==id).toList();
-        if (students.isEmpty())
+        if (students.isEmpty()) {
+            logger.info("Book not found");
             throw new DataNotFoundException(String.format("Student with id %d does not exist!", id));
-
+        }
         Student beforeUpdateStudent = studentDAO.findStudentById(id);
         if (studentDAO.updateStudent(id, student) > 0) {
             student.setId(id);

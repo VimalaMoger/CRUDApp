@@ -77,6 +77,11 @@ curl -u pansy:test localhost:8080/students -X DELETE
     ```   
   ![test](assets/testResult.png)
 
+## Unit and Integration Testing
+Unit test using JUnit, Mockito, MockMVC
+- To test all the controller units
+- To serialize and deserialize with Jackson’s ObjectMapper
+- To deserialize the objects with Gson library
 
 <br>
 <br>
