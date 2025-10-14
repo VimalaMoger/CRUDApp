@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <style>
+        .error {color:red}
+    </style>
+</head>
+
+<body>
+
+    <i>Fill out the form. Asterisk (*) means required</i>
+    <br><br>
+
+    <form th:action="@{/api/processForm}" th:object="${student}" method="POST">
+        First name: <input type="text" th:field="*{firstName}" />
+
+        <br><br>
+
+        Last name: <input type="text" th:field="*{lastName}" />
+
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('lastName')}"
+              th:errors="*{lastName}"
+              class="error"></span>
+
+        <br><br>
+
+        Age: <input type="text" th:field="*{age}" />
+
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('age')}"
+              th:errors="*{age}"
+              class="error"></span>
+
+        <br><br>
+        Email: <input type="text" th:field="*{email}" />
+
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"
+              class="error"></span>
+
+        <br><br>
+        Major: <input type="text" th:field="*{major}" />
+
+        <!-- Add error message (if present) -->
+        <span th:if="${#fields.hasErrors('major')}"
+              th:errors="*{major}"
+              class="error"></span>
+
+        <br><br>
+        <input type="submit">
+    </form>
+
+</body>
+</html>

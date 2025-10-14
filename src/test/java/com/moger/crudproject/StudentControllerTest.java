@@ -56,7 +56,6 @@ public class StudentControllerTest {
     @Autowired
     private StudentController studentController;
 
-
     @Test
     @WithMockUser(roles = {"USER"})  //role = "USER"
     public void shouldSaveStudent() throws Exception {
@@ -71,9 +70,6 @@ public class StudentControllerTest {
         verify(studentDAO, times(1)).save(any());
     }
 
-    //status":404,
-    // "message":"Student with id 1 does not exist!"
-
     @Test
     @WithMockUser(roles = {"USER"})
     public void shouldGetStudentIfExists() throws Exception {
@@ -85,14 +81,19 @@ public class StudentControllerTest {
                 .andDo(print()).andExpect(status().isOk()).andReturn();
 
         String json = result.getResponse().getContentAsString();
+
 	// or using objectmapper
 	//  Student student = objectMapper.readValue(json, Student.class);
+
         Student student = new Gson().fromJson(json, Student.class);
 
         assertNotNull(student);
         assertEquals(1L, student.getId());
         assertEquals("stu_Chemistry", student.getMajor());
     }
+
+    //status":404,
+    // "message":"Student with id 1 does not exist!"
 
     @Test
     @WithMockUser(roles = {"USER"})
@@ -130,15 +131,6 @@ public class StudentControllerTest {
         assertEquals(2, students.size());
 
     }
-
-/*  .andExpect(status().isOk())
-.andExpect(jsonPath("$", hasSize(3)))
-.andExpect(jsonPath("$[0]", is("The Book of CSS3")))
-.andExpect(jsonPath("$[1]", is("Core HTML5 Canvas")))
-.andExpect(jsonPath("$[2]", is("Pro JavaScript for Web Apps")))
-.andDo(print());
-
-*/
 
     Student buildStudent() {
         Student theStudent = new Student("Pansy", "Bran",12,"pansy@comp.com", "stu_Chemistry");

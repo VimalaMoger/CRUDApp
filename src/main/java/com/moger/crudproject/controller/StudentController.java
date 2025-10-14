@@ -52,7 +52,7 @@ public class StudentController {
 
         List<Student> students = studentDAO.getAllStudents().stream().filter(n -> n.getId()==id).toList();
         if (students.isEmpty()) {
-            logger.info("Book not found");
+            logger.info("Student not found");
             throw new DataNotFoundException(String.format("Student with id %d does not exist!", id));
         }
         Student beforeUpdateStudent = studentDAO.findStudentById(id);
