@@ -13,14 +13,14 @@ application starts.
 * [x] Creation of Entity named Student, User, and Role 
 * [x] DAO, service and controller implementation
 * [x] Accessing data with MySQL 
-* [x] Accessing Data with JPA - EntityManager to interact with the persistence context(crud actions)
+* [x] Accessing Data with JPA - JPA Query, named parameters in the JPQL and sql (parameterized queries)
 * [x] Testing JPA and service layer
 * [x] REST API calls over HTTP
 * [x] Exception handlers
 * [x] Externalized the jdbc configuration using environment variables in Properties file
 * [x] Used @Value annotation to inject environment variable(user password) into SecurityConfig class 
 * [x] RESTAPI Security-restrict endpoints based on user roles
-* [x] Spring MVC Validation - Required fields, @InitBinder, Number range, Regex, Custom messages, Custom
+* [x] Spring MVC Validation - Required fields, @InitBinder, Number range, Regex, Custom messages(messages.properties), Custom
         Java Annotation class, Custom Validation rule
 
 ### Used cURL to send HTTP requests

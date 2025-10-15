@@ -1,25 +1,21 @@
 package com.moger.crudproject;
 
 import com.moger.crudproject.config.SecurityConfig;
+import com.moger.crudproject.entity.Role;
 import com.moger.crudproject.entity.User;
 import com.moger.crudproject.serviceImpl.UsersDAOImpl;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Parameter;
 import jakarta.persistence.Query;
-import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atLeastOnce;
 
-//@MockitoSettings(strictness = Strictness.LENIENT)
-//@RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
@@ -39,35 +35,46 @@ public class UserServiceTest {
     public void saveUserTest() {
 
        User user = buildUser();
-       entityManager.persist(any());
+
        userDaoImpl.save(user);
        verify(entityManager, times(1)).persist(user);
     }
 
     @Test
+    public void saveUserRolesTest() {
+
+        User user = buildUser();
+        Role role = new Role("ROLE_STU");
+
+        when(entityManager.createNativeQuery(any())).thenReturn(query);
+        when(query.setParameter(eq(1), any())).thenReturn(query);
+        when(query.setParameter(eq(2), any())).thenReturn(query);
+        when(query.executeUpdate()).thenReturn(1);  //simulate 1 row updated
+        userDaoImpl.saveUsersRoles(user, role);
+
+        verify(entityManager).createNativeQuery(any());
+        verify(query, atMost(2)).setParameter(eq(1), any());
+        verify(query, atLeastOnce()).setParameter(eq(1), any());
+    }
+
+    @Test
     public void findUserByUsernameTest() {
-        //Class<User> entityClass = User.class;
+
         String userName = "Pansy";
-        //String jpqlQuery = "select * from user where user_name=userName";
+
         when(entityManager.createNativeQuery(any(), eq(User.class))).thenReturn(query);
-        when(query.setParameter(eq("name"), any())).thenReturn(query);
-        //query.setParameter("paramName", userName);
+        when(query.setParameter(anyString(), any())).thenReturn(query);
+        query.setParameter("theUserName", "Pansy");
         when(query.getSingleResult()).thenReturn(buildUser());
 
-//"theUserName", "Pansy"
         User user = userDaoImpl.findByUsername(userName);
         assertEquals(userName, user.getUserName());
-        verify(entityManager).createQuery("jpqlQuery");
-        verify(query).getResultList();
-        verify(query).setParameter("paramName", userName);
+        verify(entityManager).createNativeQuery(any(), eq(User.class));
+        verify(query).getSingleResult();
+        verify(query, atMost(2)).setParameter(anyString(), any());
+        verify(query, atLeastOnce()).setParameter(anyString(), any());
     }
-/*  when(userRepository.findById(2L)).thenReturn(Optional.empty());
 
-Exception exception = assertThrows(RuntimeException.class, () -> {
-            userService.findUserById(2L);
-        });
-        assertEquals("User not found", exception.getMessage());
- */
     User buildUser() {
 
         User user = new User();
