@@ -4,11 +4,11 @@ Basic CRUD actions on Student table and created MyRunner that implements Command
 application starts. 
 
 
-### Dependencies needed to run the project
+## Dependencies needed to run the project
     - spring-boot (starter-web, data-jpa, starter-test, starter-security, starter-thymeleaf), 
     - springdoc-openapi-starter-webmvc-ui, lombok, spring-boot-starter-validation, hibernate-validator, mysql-connector, h2 database
 
-#### Tasks
+## Tasks
 
 * [x] Creation of Entity named Student, User, and Role 
 * [x] DAO, service and controller implementation
@@ -23,7 +23,7 @@ application starts.
 * [x] Spring MVC Validation - Required fields, @InitBinder, Number range, Regex, Custom messages(messages.properties), Custom
         Java Annotation class, Custom Validation rule
 
-### Used cURL to send HTTP requests
+## Used cURL to send HTTP requests
 
 *Included security credentials in cURL request* examples
 
@@ -82,11 +82,15 @@ curl -u pansy:test localhost:8080/students -X DELETE
     ```   
   ![test](assets/testResult.png)
 
-## Unit and Integration Testing
+### Unit and Integration Testing
 Unit test using JUnit, Mockito, MockMVC
 - To test all the controller units
 - To serialize and deserialize with Jackson’s ObjectMapper
 - To deserialize the objects with Gson library
+
+### Integration testing for endpoint connectivity
+- @SpringBootTest and TestRestTemplate in Spring Boot context
+- Start the server with H2 Database profile configuration
 
 <br>
 <br>

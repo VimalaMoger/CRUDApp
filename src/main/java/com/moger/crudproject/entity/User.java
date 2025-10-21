@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Set;
 
-
+@Entity
 @Data
 @NoArgsConstructor
-@Entity
+@Table(name = "User")
 public class User {
 
     //define fields

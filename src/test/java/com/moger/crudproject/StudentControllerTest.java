@@ -134,13 +134,17 @@ public class StudentControllerTest {
         Student student = buildStudent();
         when(studentDAO.findStudentById(1L)).thenReturn(student);
         when(studentDAO.getAllStudents()).thenReturn(List.of(buildStudent()));
+        when(studentDAO.updateStudent(anyLong(), any())).thenReturn(1);
 
         Student updateStudent = new Student("Daisy", "Bran",12,"pansy@comp.com", "stu_Chemistry");
+        updateStudent.setId(student.getId());
         String jsonString = objectMapper.writeValueAsString(updateStudent);
 
         this.mockMvc.perform(put("/students/"+student.getId()).contentType(MediaType.APPLICATION_JSON)
                 .with(csrf())
-                .content(jsonString)).andDo(print()).andExpect(status().isOk());
+                .content(jsonString)).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(student + String.format(" now changed to " + updateStudent)));
+
         verify(studentDAO, times(1)).updateStudent(anyLong(), any());
     }
 
@@ -173,7 +177,7 @@ public class StudentControllerTest {
         when(studentDAO.getAllStudents()).thenReturn(List.of(buildStudent()));
         //when(entityManager.find(eq(Student.class), anyLong())).thenReturn(student);
 
-        studentDAO.deleteStudent(anyLong());
+        doNothing().when(studentDAO).deleteStudent(anyLong());
         this.mockMvc.perform(delete("/students/"+student.getId())
                         .with(csrf()))
                         .andDo(print()).andExpect(status().isOk())
@@ -182,7 +186,7 @@ public class StudentControllerTest {
 
     @Test
     @WithMockUser(roles = {"USER"})
-    public void shouldDeleteAllStudent() throws Exception {
+    public void shouldDeleteAllStudents() throws Exception {
 
         when(studentDAO.deleteAllStudents()).thenReturn(2);
 
@@ -192,7 +196,7 @@ public class StudentControllerTest {
                 .andExpect(content().string("2 records removed"));
     }
 
-    Student buildStudent() {
+    private Student buildStudent() {
         Student theStudent = new Student("Pansy", "Bran",12,"pansy@comp.com", "stu_Chemistry");
         theStudent.setId(1);
         return theStudent;

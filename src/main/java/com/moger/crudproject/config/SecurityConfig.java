@@ -46,11 +46,26 @@ public class SecurityConfig {
         return http.build();
     }
 
+//h2 database - Integration testing - to permit all requests
+/*  @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth ->
+                        auth
+                                .requestMatchers("/students").permitAll()
+                                .requestMatchers("/students/**").permitAll()
 
+                                //.requestMatchers("/h2-console/**").permitAll()
 
-    //hardcoded user details
+                                .anyRequest().authenticated()
 
-     /*  @Bean
+                ).build();
+    }
+
+//hardcoded user details
+*/
+
+/*  @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);  //all the user details stored in the database
     }

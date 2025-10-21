@@ -26,6 +26,11 @@ public class StudentDAOImpl implements StudentDAO {
     @Transactional
     public Long save(Student theStudent) {
 
+        String id = String.valueOf(theStudent.getId());
+        if (id != null) {
+            theStudent = entityManager.merge(theStudent);
+        }
+
         entityManager.persist(theStudent);
         entityManager.flush();  //to retrieve id
         return theStudent.getId();

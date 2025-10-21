@@ -8,13 +8,16 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.atLeastOnce;
+
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -35,7 +38,7 @@ public class UserServiceTest {
     public void saveUserTest() {
 
        User user = buildUser();
-
+       doNothing().when(entityManager).persist(any(User.class));
        userDaoImpl.save(user);
        verify(entityManager, times(1)).persist(user);
     }

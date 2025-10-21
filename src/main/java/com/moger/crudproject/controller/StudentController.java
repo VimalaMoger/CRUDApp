@@ -33,7 +33,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students/{id}")
-    public ResponseEntity<Student> findStudent(@PathVariable Long id) {
+    public ResponseEntity<Student> findStudentById(@PathVariable Long id) {
 
         List<Student> students = studentDAO.getAllStudents().stream().filter(n -> n.getId()==id).toList();
         if (students.isEmpty())

@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@Entity
 @Data
 @NoArgsConstructor
-@Entity
+@Table(name = "Role")
 public class Role {
 
     @Id

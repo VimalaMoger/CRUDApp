@@ -4,7 +4,6 @@ package com.moger.crudproject;
 import com.moger.crudproject.controller.StudentController;
 import com.moger.crudproject.entity.Student;
 import com.moger.crudproject.serviceImpl.StudentDAOImpl;
-import jakarta.persistence.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
