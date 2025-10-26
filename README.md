@@ -85,13 +85,38 @@ curl -u pansy:test localhost:8080/students -X DELETE
 ### Unit and Integration Testing
 Unit test using JUnit, Mockito, MockMVC
 - To test all the controller units
-- To serialize and deserialize with Jackson’s ObjectMapper
-- To deserialize the objects with Gson library
+- Data conversion with Jackson’s ObjectMapper and Gson library
 
 ### Integration testing for endpoint connectivity
 - @SpringBootTest and TestRestTemplate in Spring Boot context
-- Start the server with H2 Database profile configuration
+- Start the server with H2 Database profile configuration in application-test.properties
 
+### Maven Commands
+- Start the Spring Boot Server
+```text
+    mvn spring-boot:run
+```
+- Start the Spring Boot with test profile
+```text
+    mvn spring-boot:run -Dspring-boot.run.profiles=test
+    Profile build in pom.xml
+```
+
+- 
+-Run Unit Tests
+```text
+    mvn test
+```
+
+## failsafe plugin:
+- Run only Integrated Tests
+```text
+    mvn failsafe:integration-test
+```
+- Run all tests
+```text
+    mvn integration-test
+```
 <br>
 <br>
 <br>

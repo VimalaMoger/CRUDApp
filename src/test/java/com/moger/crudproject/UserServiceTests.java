@@ -8,10 +8,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -20,7 +18,7 @@ import static org.mockito.Mockito.atLeastOnce;
 
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+public class UserServiceTests {
 
     @Mock
     private EntityManager entityManager;

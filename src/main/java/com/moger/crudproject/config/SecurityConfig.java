@@ -3,12 +3,17 @@ package com.moger.crudproject.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import javax.sql.DataSource;
+
 
 @Configuration
 public class SecurityConfig {
@@ -22,8 +27,7 @@ public class SecurityConfig {
     @Value("${userPassword}")
     public String user_password;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+/*    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(configurer ->
                 configurer
@@ -45,9 +49,10 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
         return http.build();
     }
+*/
 
 //h2 database - Integration testing - to permit all requests
-/*  @Bean
+  @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
@@ -63,7 +68,7 @@ public class SecurityConfig {
     }
 
 //hardcoded user details
-*/
+
 
 /*  @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {

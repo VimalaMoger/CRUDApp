@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
  */
 
 @ExtendWith(MockitoExtension.class)
-public class StudentControllerMockTest {
+public class StudentControllerMockTests {
 
     @Mock
     private StudentDAOImpl studentDAO;

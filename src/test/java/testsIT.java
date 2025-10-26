@@ -1,5 +1,3 @@
-package com.moger.crudproject;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.moger.crudproject.dto.ErrorResponse;
 import com.moger.crudproject.entity.Student;
@@ -15,7 +13,7 @@ import static org.junit.Assert.*;
 
 
 @SpringBootTest
-public class IntegrationTest {
+public class testsIT {
 
     @Test
     @Order(1)
