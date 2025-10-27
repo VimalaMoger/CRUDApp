@@ -100,26 +100,30 @@ Unit test using JUnit, Mockito, MockMVC
 ```text
     mvn spring-boot:run -Dspring-boot.run.profiles=test
     Profile build in pom.xml
-```
-
-- 
--Run Unit Tests
+``` 
+- Run Unit Tests
 ```text
     mvn test
 ```
 
 ## failsafe plugin:
-- Run only Integrated Tests
+- Run only Integration Tests
 ```text
+    mvn spring-boot:run -Dspring-boot.run.profiles=test
     mvn failsafe:integration-test
 ```
+ <img width="399" height="30" alt="testsIT" src="https://github.com/user-attachments/assets/f0f3e600-4d3a-440c-b75b-0a90e62dc516" />
+ 
 - Run all tests
 ```text
     mvn integration-test
 ```
+<img width="412" height="27" alt="alltests" src="https://github.com/user-attachments/assets/aacf47ef-2d4f-4a04-bec5-e5c4b1219b23" /><br>
+<img width="399" height="30" alt="testsIT" src="https://github.com/user-attachments/assets/8ec3161c-d563-4c9e-9571-ec69c7138210" />
 <br>
 <br>
 <br>
+
 
 
   
